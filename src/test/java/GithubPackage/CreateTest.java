@@ -14,6 +14,6 @@ public class CreateTest {
 	}
 	@Test
 public void newupdate() {
-	System.out.println("newupdate");
+	System.out.println("new update");
 }
 }
