@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class CreateTest {
 	
 
-	@Test
+	@Test(groups="smoke")
 	public void createnewTest() {
 		System.out.println("created");
 	}

@@ -6,6 +6,8 @@
   
    
   <dependencies>
+ 
+
  <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 <dependency>
     <groupId>io.github.bonigarcia</groupId>
@@ -56,11 +58,97 @@
     <artifactId>extentreports</artifactId>
     <version>5.0.9</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+<dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.0.0-M5</version>
+</dependency>
 
   
   
   </dependencies>
+  <profiles>
   
+        <profile>
+        <id>smoketest</id>
+  <build> 
+  <plugins>    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>smoketestng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+  </plugins>
+    </build>
+             </profile>
+    <profile>
+    <id>regressiontest</id>
+  <build>   
+  <plugins>  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>regressiontestng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+  </plugins>
+    </build>
+             </profile>
+         
+         <profile>
+    <id>batch</id>
+  <build>   
+  <plugins>  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>batchtestng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+  </plugins>
+    </build>
+             </profile>
+             
+  </profiles>
+  <build>
+  
+  <plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.5.1</version>
+                <configuration>
+                      <verbose>true</verbose>
+                      <fork>true</fork>
+                      <executable>${java.home}</executable>
+                   <compilerVersion>1.8</compilerVersion>
+                   <source>1.8</source>
+                   <target>1.8</target>
+                 </configuration>
+             </plugin>
+
+  </plugins>
+    </build>
+    <properties>
+        <java.home>C:/Program Files/Java/jdk-17.0.4.1/bin/javac</java.home>
+  </properties>
   
   
 </project>
